@@ -1,11 +1,23 @@
 import java.util.Random;
+import java.util.Scanner;
 
 public class Dice {
 	
 	int diceSum = 0;
 	
 	public int rollDice(){
-		return dice();
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Press Enter to Roll");
+		String userInput = scanner.nextLine();
+		
+		if(userInput.equals(""))
+		{
+			return dice();
+		}else{
+			System.out.println("Bye...");
+			return 0;
+		}
+		
 	}
 	
 	private int dice(){	

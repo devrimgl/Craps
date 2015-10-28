@@ -1,40 +1,75 @@
+import java.util.Scanner;
 
 public class Bet {
-	//	int betList0[] = {5,10,25,50,100,250,500};
-	int betList5[] = {5};
-	int betList10[] = {5,10};
-	int betList25[] = {5,10,25};
-	int betList50[] = {5,10,25,50};
-	int betList100[] = {5,10,25,50,100};
-	int betList250[] = {5,10,25,50,100,250};
-	int betList500[] = {5,10,25,50,100,250,500};
-	int betListError[] = {0};
+	int betList[] = {5,10,25,50,100,250,500};
+	int minBet = betList[0];
+	int maxBet;
 	
-	public int[] possibleBets(Player player){
-		if(player.getBalance() > 0 && player.getBalance() < 10){
-			return betList5;
+	public int getMaxBet(int balance){
+		for(int i=0;i<betList.length;i++){
+			if(balance < betList[i]){
+				return betList[i-1];
+			}	
 		}
-		else if(player.getBalance() >= 10 && player.getBalance() < 25){
-			return betList10;
+		return 0;
+	}
+	
+	public boolean betAmount(int balance, int bet){
+		if(bet > balance){
+			System.out.println("You cannot bet " + bet + "!");
+			System.out.println("Your max possible bet amount is " + getMaxBet(balance));
+			return false;
+		} else{
+			return true;
 		}
-		else if(player.getBalance() >= 25 && player.getBalance() < 50){
-			return betList25;
+	}
+	
+	public int getBet(Player player){
+		int betAmount;
+		System.out.println("Your current balance is "+ player.balance);
+		System.out.println("Your possible bets are : ");
+		for(int i=0;i<betList.length;i++){
+			if(player.balance >= betList[i]){
+				System.out.print(betList[i] + " ");
+			}
+			
 		}
-		else if(player.getBalance() >= 50 && player.getBalance() < 100){
-			return betList50;
+		System.out.println();
+		betAmount = betScan();
+		if(betAmount == -1){
+			System.out.println("You cannot bet that amount!!");
+			getBet(player);
 		}
-		else if(player.getBalance() >= 100 && player.getBalance() < 250){
-			return betList100;
-		}
-		else if(player.getBalance() >= 250 && player.getBalance() < 500){
-			return betList250;
-		}
-		else if(player.getBalance() >= 500){
-			return betList500;
-		}
-		else{
-			return betListError;
-		}
+		return betAmount;
 		
 	}
+	
+	public int betScan(){
+		System.out.println("How much you bet? : ");
+		Scanner scan = new Scanner(System.in);
+		int betAmount = scan.nextInt();
+		for(int i=0; i<betList.length; i++){
+			if(betAmount ==betList[i]){
+				return betAmount;	
+			}	
+		}
+		return -1;	
+	}
+	
+	public int[] getBetList() {
+		return betList;
+	}
+	public void setBetList(int[] betList) {
+		this.betList = betList;
+	}
+	public int getMinBet() {
+		return minBet;
+	}
+	public void setMinBet(int minBet) {
+		this.minBet = minBet;
+	}
+
+	
+	
+	
 }

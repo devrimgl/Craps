@@ -30,10 +30,19 @@ public class Player {
 	public void topUpBalance(int topUpAmount){
 		balance = balance + topUpAmount;
 	}
+	
+	public void winBalance(int betAmount){
+		balance = balance + betAmount;
+	}
+	
+	public void lostBalance(int betAmount){
+		balance = balance - betAmount;
+	}
+	
 	//Print balance - sonrasinda Bet'e gore balance bilgisi buraya ekleyebilirsin
 	public void printBalance(){
 		if(balance > 5){
-			System.out.println("Your current balance is" + balance);
+			System.out.println("Your current balance is : " + balance);
 		}
 		else{
 			System.out.println("You don't have any credits! Oups! You need to top up to play!");
