@@ -41,7 +41,7 @@ public class Player {
 	
 	//Print balance - sonrasinda Bet'e gore balance bilgisi buraya ekleyebilirsin
 	public void printBalance(){
-		if(balance > 5){
+		if(balance >= 5){
 			System.out.println("Your current balance is : " + balance);
 		}
 		else{
